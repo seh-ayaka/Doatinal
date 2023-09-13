@@ -1,17 +1,13 @@
 from django.db import models
 
-class Doador(models.Model):
-    cpf = models.CharField(max_length=11, unique=True)
-    nome = models.CharField(max_length=200)
-    email = models.EmailField()
-    telefone = models.CharField(max_length=20, null=True, blank=True)
-    senha = models.CharField(max_length=200, null=True, blank=True)
-    cep = models.BigIntegerField(null=True, blank=True)
-    endereco = models.CharField(max_length=200)
-    rg = models.CharField(max_length=20)
+class Usuario(models.Model):
+    data_nascimento = models.DateField ("Data de Nascimento")
+    cpf = models.CharField("CPF", unique = True, max_length= 11)
+    endereco = models.CharField(_"Endereço Completo", max_length=255)
 
-    def __str__(self):
-        return self.nome
+class Doacao(models.Model):
+    valor = models.DecimalField('Valor de doação', max_digits=10, decimal_places=2)
+    confirmacao = models.BooleanField('Pagamento confirmado ?', default=False)
 
 
 # Create your models here.
